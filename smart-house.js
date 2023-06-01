@@ -100,6 +100,64 @@ class Weather {
     }
 }
 
+class PresenceSensor {
+    detectPresence() {
+        // Simulacija detekcije prisutnosti
+        const isPresenceDetected = Math.random() < 0.5;
+        return isPresenceDetected;
+    }
+}
+
+class TemperatureSensor {
+    getCurrentTemperature() {
+        // Simulacija očitanja temperature
+        const currentTemperature = Math.floor(Math.random() * 30) + 20;
+        return currentTemperature;
+    }
+}
+
+class SmartOutlet {
+    constructor() {
+        this.isOn = false;
+    }
+
+    turnOn() {
+        this.isOn = true;
+        console.log('Pametna utičnica je uključena.');
+    }
+
+    turnOff() {
+        this.isOn = false;
+        console.log('Pametna utičnica je isključena.');
+    }
+}
+
+class SecuritySystem {
+    activateAlarm() {
+        console.log('Alarmni sustav je aktiviran.');
+    }
+
+    deactivateAlarm() {
+        console.log('Alarmni sustav je deaktiviran.');
+    }
+}
+
+class VoiceAssistant {
+    sendPushNotification(message) {
+        console.log(`Primljena push obavijest: ${message}`);
+    }
+}
+
+class GardenSprinklers {
+    startSprinklers() {
+        console.log('Navodnjavanje vrta je pokrenuto.');
+    }
+
+    stopSprinklers() {
+        console.log('Navodnjavanje vrta je zaustavljeno.');
+    }
+}
+
 // Kreiranje uređaja
 const livingRoomLight = new Light('Svjetlo u dnevnoj sobi');
 const kitchenLight = new Light('Svjetlo u kuhinji');
@@ -111,6 +169,7 @@ const backDoor = new Door('Stražnja vrata');
 const livingRoomWindow = new Window('Prozor u dnevnoj sobi');
 const bedroomWindow = new Window('Prozor u spavaćoj sobi');
 const television = new Television();
+const washingMachine = new WashingMachine();
 const weather = new Weather();
 const presenceSensor = new PresenceSensor();
 const temperatureSensor = new TemperatureSensor();
@@ -129,6 +188,7 @@ frontDoor.close();
 backDoor.close();
 livingRoomWindow.close();
 bedroomWindow.close();
+washingMachine.start();
 
 // Automatsko upravljanje uređajima
 function automateHome() {
@@ -180,18 +240,18 @@ function setSunnyWeather() {
 // Detekcija prisutnosti
 class PresenceSensor {
     detectPresence() {
-        // Logika za detekciju prisutnosti
-        // Vraća true ako je prisutnost detektirana, inače false
-        return true;
+        // Simulacija detekcije prisutnosti
+        const isPresenceDetected = Math.random() < 0.5;
+        return isPresenceDetected;
     }
 }
 
 // Automatsko podešavanje temperature
 class TemperatureSensor {
     getCurrentTemperature() {
-        // Logika za dobivanje trenutne temperature
-        // Vraća trenutnu temperaturu
-        return 25;
+        // Simulacija očitanja temperature
+        const currentTemperature = Math.floor(Math.random() * 30) + 20;
+        return currentTemperature;
     }
 }
 
