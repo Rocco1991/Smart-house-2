@@ -135,6 +135,8 @@ class SmartOutlet {
 class SecuritySystem {
     activateAlarm() {
         console.log('Alarmni sustav je aktiviran.');
+        console.log('Poziv policiji i vatrogascima je poslan.');
+        console.log('Hitna pomoć je obaviještena.');
     }
 
     deactivateAlarm() {
@@ -158,6 +160,49 @@ class GardenSprinklers {
     }
 }
 
+// Klasa za garažu
+class Garage {
+    constructor() {
+        this.isCarInside = false;
+        this.isCO2LevelHigh = false;
+        this.CO2Detector = new CO2Detector();
+    }
+
+    parkCar() {
+        this.isCarInside = true;
+        console.log('Auto je parkiran u garaži.');
+    }
+
+    removeCar() {
+        this.isCarInside = false;
+        console.log('Auto je izvađen iz garaže.');
+    }
+
+    checkCO2Level() {
+        const CO2Level = this.CO2Detector.getCO2Level();
+        if (CO2Level > 1000) {
+            this.isCO2LevelHigh = true;
+            console.log('Visok nivo CO2 detektiran u garaži.');
+            this.notifyAuthorities();
+        } else {
+            this.isCO2LevelHigh = false;
+            console.log('Normalan nivo CO2 u garaži.');
+        }
+    }
+
+    notifyAuthorities() {
+        console.log('Javljeno policiji, vatrogascima i hitnoj.');
+    }
+}
+
+class CO2Detector {
+    getCO2Level() {
+        // Simulacija očitanja razine CO2
+        const CO2Level = Math.floor(Math.random() * 2000) + 500;
+        return CO2Level;
+    }
+}
+
 // Kreiranje uređaja
 const livingRoomLight = new Light('Svjetlo u dnevnoj sobi');
 const kitchenLight = new Light('Svjetlo u kuhinji');
@@ -177,6 +222,7 @@ const smartOutlet = new SmartOutlet();
 const securitySystem = new SecuritySystem();
 const voiceAssistant = new VoiceAssistant();
 const gardenSprinklers = new GardenSprinklers();
+const garage = new Garage();
 
 // Upravljanje uređajima
 livingRoomLight.turnOn();
@@ -238,67 +284,47 @@ function setSunnyWeather() {
 }
 
 // Detekcija prisutnosti
-class PresenceSensor {
-    detectPresence() {
-        // Simulacija detekcije prisutnosti
-        const isPresenceDetected = Math.random() < 0.5;
-        return isPresenceDetected;
-    }
+function detectPresence() {
+    const isPresenceDetected = presenceSensor.detectPresence();
+    console.log(`Prisutnost je detektirana: ${isPresenceDetected}`);
 }
 
 // Automatsko podešavanje temperature
-class TemperatureSensor {
-    getCurrentTemperature() {
-        // Simulacija očitanja temperature
-        const currentTemperature = Math.floor(Math.random() * 30) + 20;
-        return currentTemperature;
-    }
+function adjustTemperature() {
+    const currentTemperature = temperatureSensor.getCurrentTemperature();
+    console.log(`Trenutna temperatura: ${currentTemperature}°C`);
 }
 
 // Energetska učinkovitost
-class SmartOutlet {
-    constructor() {
-        this.isOn = false;
-    }
-
-    turnOn() {
-        this.isOn = true;
-        console.log('Pametna utičnica je uključena.');
-    }
-
-    turnOff() {
-        this.isOn = false;
-        console.log('Pametna utičnica je isključena.');
+function controlSmartOutlet(action) {
+    if (action === 'on') {
+        smartOutlet.turnOn();
+    } else if (action === 'off') {
+        smartOutlet.turnOff();
     }
 }
 
 // Sigurnosne značajke
-class SecuritySystem {
-    activateAlarm() {
-        console.log('Alarmni sustav je aktiviran.');
-    }
+function activateAlarm() {
+    securitySystem.activateAlarm();
+}
 
-    deactivateAlarm() {
-        console.log('Alarmni sustav je deaktiviran.');
-    }
+function deactivateAlarm() {
+    securitySystem.deactivateAlarm();
 }
 
 // Integracija s pametnim telefonima
-class VoiceAssistant {
-    sendPushNotification(message) {
-        console.log(`Primljena push obavijest: ${message}`);
-    }
+function sendPushNotification(message) {
+    voiceAssistant.sendPushNotification(message);
 }
 
 // Automatsko navodnjavanje vrta
-class GardenSprinklers {
-    startSprinklers() {
-        console.log('Navodnjavanje vrta je pokrenuto.');
-    }
+function startSprinklers() {
+    gardenSprinklers.startSprinklers();
+}
 
-    stopSprinklers() {
-        console.log('Navodnjavanje vrta je zaustavljeno.');
-    }
+function stopSprinklers() {
+    gardenSprinklers.stopSprinklers();
 }
 
 // Primjer upravljanja uređajima
@@ -309,9 +335,15 @@ television.turnOn();
 television.setVolume(10);
 setSunnyWeather();
 automateHome();
-presenceSensor.detectPresence();
-temperatureSensor.getCurrentTemperature();
-smartOutlet.turnOn();
-securitySystem.activateAlarm();
-voiceAssistant.sendPushNotification('Kuća je sigurna.');
-gardenSprinklers.startSprinklers();
+detectPresence();
+adjustTemperature();
+controlSmartOutlet('on');
+activateAlarm();
+sendPushNotification('Kuća je sigurna.');
+startSprinklers();
+
+// Garaža
+garage.parkCar();
+garage.checkCO2Level();
+garage.removeCar();
+garage.checkCO2Level();
