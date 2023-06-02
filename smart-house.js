@@ -1,4 +1,6 @@
 // Klase za uređaje u kući
+
+// SVJETLO
 class Light {
     constructor(name) {
         this.name = name;
@@ -16,6 +18,7 @@ class Light {
     }
 }
 
+// VRATA
 class Door {
     constructor(name) {
         this.name = name;
@@ -33,6 +36,7 @@ class Door {
     }
 }
 
+// PROZORI
 class Window {
     constructor(name) {
         this.name = name;
@@ -61,6 +65,7 @@ class Window {
     }
 }
 
+// PERILICA SUĐA
 class WashingMachine {
     constructor() {
         this.isRunning = false;
@@ -72,7 +77,9 @@ class WashingMachine {
             this.isRunning = true;
             console.log(`Mašina za pranje rublja je pokrenuta.`);
         } else {
-            console.log(`Mašina za pranje rublja se može pokrenuti samo nakon 22:00.`);
+            console.log(
+                `Mašina za pranje rublja se može pokrenuti samo nakon 22:00.`
+            );
         }
     }
 
@@ -90,15 +97,17 @@ class Weather {
 
     setStormy() {
         this.isStormy = true;
-        console.log('Olujno vrijeme. Svi prozori se zatvaraju.');
+        console.log("Olujno vrijeme. Svi prozori se zatvaraju.");
     }
 
     setSunny() {
         this.isStormy = false;
         this.isSunny = true;
-        console.log('Sunčano vrijeme. Prozori se otvaraju.');
+        console.log("Sunčano vrijeme. Prozori se otvaraju.");
     }
 }
+
+// SENZOR PRISUTNOSTI
 
 class PresenceSensor {
     detectPresence() {
@@ -123,24 +132,24 @@ class SmartOutlet {
 
     turnOn() {
         this.isOn = true;
-        console.log('Pametna utičnica je uključena.');
+        console.log("Pametna utičnica je uključena.");
     }
 
     turnOff() {
         this.isOn = false;
-        console.log('Pametna utičnica je isključena.');
+        console.log("Pametna utičnica je isključena.");
     }
 }
 
 class SecuritySystem {
     activateAlarm() {
-        console.log('Alarmni sustav je aktiviran.');
-        console.log('Poziv policiji i vatrogascima je poslan.');
-        console.log('Hitna pomoć je obaviještena.');
+        console.log("Alarmni sustav je aktiviran.");
+        console.log("Poziv policiji i vatrogascima je poslan.");
+        console.log("Hitna pomoć je obaviještena.");
     }
 
     deactivateAlarm() {
-        console.log('Alarmni sustav je deaktiviran.');
+        console.log("Alarmni sustav je deaktiviran.");
     }
 }
 
@@ -152,11 +161,11 @@ class VoiceAssistant {
 
 class GardenSprinklers {
     startSprinklers() {
-        console.log('Navodnjavanje vrta je pokrenuto.');
+        console.log("Navodnjavanje vrta je pokrenuto.");
     }
 
     stopSprinklers() {
-        console.log('Navodnjavanje vrta je zaustavljeno.');
+        console.log("Navodnjavanje vrta je zaustavljeno.");
     }
 }
 
@@ -170,28 +179,28 @@ class Garage {
 
     parkCar() {
         this.isCarInside = true;
-        console.log('Auto je parkiran u garaži.');
+        console.log("Auto je parkiran u garaži.");
     }
 
     removeCar() {
         this.isCarInside = false;
-        console.log('Auto je izvađen iz garaže.');
+        console.log("Auto je izvađen iz garaže.");
     }
 
     checkCO2Level() {
         const CO2Level = this.CO2Detector.getCO2Level();
         if (CO2Level > 1000) {
             this.isCO2LevelHigh = true;
-            console.log('Visok nivo CO2 detektiran u garaži.');
+            console.log("Visok nivo CO2 detektiran u garaži.");
             this.notifyAuthorities();
         } else {
             this.isCO2LevelHigh = false;
-            console.log('Normalan nivo CO2 u garaži.');
+            console.log("Normalan nivo CO2 u garaži.");
         }
     }
 
     notifyAuthorities() {
-        console.log('Javljeno policiji, vatrogascima i hitnoj.');
+        console.log("Javljeno policiji, vatrogascima i hitnoj.");
     }
 }
 
@@ -203,16 +212,94 @@ class CO2Detector {
     }
 }
 
+class Thermostat {
+    constructor(room) {
+        this.room = room;
+        this.targetTemperature = 20; // Default target temperature
+        this.currentTemperature = 0; // Placeholder for current temperature
+    }
+
+    setTargetTemperature(targetTemperature) {
+        this.targetTemperature = targetTemperature;
+        console.log(
+            `Target temperature for ${this.room} set to ${targetTemperature}°C.`
+        );
+    }
+
+    getCurrentTemperature() {
+        // Simulate reading the current temperature from a sensor
+        // Replace this with actual temperature reading code
+        this.currentTemperature = Math.floor(Math.random() * 10) + 20;
+        console.log(
+            `Current temperature in ${this.room} is ${this.currentTemperature}°C.`
+        );
+        return this.currentTemperature;
+    }
+
+    adjustTemperature() {
+        this.getCurrentTemperature();
+        if (this.currentTemperature < this.targetTemperature) {
+            console.log(`Heating ${this.room}...`);
+            // Code to activate heating system
+        } else if (this.currentTemperature > this.targetTemperature) {
+            console.log(`Cooling ${this.room}...`);
+            // Code to activate cooling system
+        } else {
+            console.log(`${this.room} temperature is already at the desired level.`);
+        }
+    }
+}
+
+class Television {
+    constructor() {
+        this.isOn = false;
+        this.volume = 0;
+    }
+
+    turnOn() {
+        this.isOn = true;
+        console.log("TV is turned on.");
+    }
+
+    turnOff() {
+        this.isOn = false;
+        console.log("TV is turned off.");
+    }
+
+    setVolume(volume) {
+        this.volume = volume;
+        console.log(`Volume is set to ${volume}.`);
+    }
+
+    increaseVolume() {
+        if (this.volume < 100) {
+            this.volume += 10;
+            console.log(`Volume increased to ${this.volume}.`);
+        } else {
+            console.log("Maximum volume reached.");
+        }
+    }
+
+    decreaseVolume() {
+        if (this.volume > 0) {
+            this.volume -= 10;
+            console.log(`Volume decreased to ${this.volume}.`);
+        } else {
+            console.log("Minimum volume reached.");
+        }
+    }
+}
+
 // Kreiranje uređaja
-const livingRoomLight = new Light('Svjetlo u dnevnoj sobi');
-const kitchenLight = new Light('Svjetlo u kuhinji');
-const hallwayLight = new Light('Svjetlo u glavnom hodniku');
-const bathroomLight = new Light('Svjetlo u kupaonici');
-const bedroomLight = new Light('Svjetlo u spavaćoj sobi');
-const frontDoor = new Door('Ulazna vrata');
-const backDoor = new Door('Stražnja vrata');
-const livingRoomWindow = new Window('Prozor u dnevnoj sobi');
-const bedroomWindow = new Window('Prozor u spavaćoj sobi');
+const livingRoomLight = new Light("Svjetlo u dnevnoj sobi");
+const kitchenLight = new Light("Svjetlo u kuhinji");
+const hallwayLight = new Light("Svjetlo u glavnom hodniku");
+const bathroomLight = new Light("Svjetlo u kupaonici");
+const bedroomLight = new Light("Svjetlo u spavaćoj sobi");
+const frontDoor = new Door("Ulazna vrata");
+const backDoor = new Door("Stražnja vrata");
+const livingRoomWindow = new Window("Prozor u dnevnoj sobi");
+const bedroomWindow = new Window("Prozor u spavaćoj sobi");
 const television = new Television();
 const washingMachine = new WashingMachine();
 const weather = new Weather();
@@ -223,6 +310,8 @@ const securitySystem = new SecuritySystem();
 const voiceAssistant = new VoiceAssistant();
 const gardenSprinklers = new GardenSprinklers();
 const garage = new Garage();
+const thermostatLivingRoom = new Thermostat("Living Room");
+const thermostatBedroom = new Thermostat("Bedroom");
 
 // Upravljanje uređajima
 livingRoomLight.turnOn();
@@ -291,15 +380,15 @@ function detectPresence() {
 
 // Automatsko podešavanje temperature
 function adjustTemperature() {
-    const currentTemperature = temperatureSensor.getCurrentTemperature();
-    console.log(`Trenutna temperatura: ${currentTemperature}°C`);
+    thermostatLivingRoom.adjustTemperature();
+    thermostatBedroom.adjustTemperature();
 }
 
 // Energetska učinkovitost
 function controlSmartOutlet(action) {
-    if (action === 'on') {
+    if (action === "on") {
         smartOutlet.turnOn();
-    } else if (action === 'off') {
+    } else if (action === "off") {
         smartOutlet.turnOff();
     }
 }
@@ -337,9 +426,9 @@ setSunnyWeather();
 automateHome();
 detectPresence();
 adjustTemperature();
-controlSmartOutlet('on');
+controlSmartOutlet("on");
 activateAlarm();
-sendPushNotification('Kuća je sigurna.');
+sendPushNotification("Kuća je sigurna.");
 startSprinklers();
 
 // Garaža
